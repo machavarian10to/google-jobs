@@ -1,0 +1,84 @@
+.card {
+  cursor: pointer;
+  font-family: 'Roboto';
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 780px;
+  height: 114px;
+  color: #334680;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  margin-bottom: 32px;
+  padding: 12px;
+
+  .company-vacancy-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .titles {
+      margin-left: 16px;
+
+      h4 {
+        margin-block: 15px;
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      h5{
+        margin: 0;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .full-time {
+        width: 65px;
+        height: 25px;
+        border: 1px solid #334680;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
+
+    .company-logo{
+        width: 90px;
+        height: 90px;
+    
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 4px;
+        }
+      }
+  }
+
+  .info {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #B9BDCF;
+    font-size: 12px;
+
+    .location, .time {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .location {
+      margin-right: 30px;
+    }
+
+    span {
+      margin-left: 8px;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="bg-image">
+    <mat-form-field class="job-search-form">
+        <mat-icon class="icon">work_outline</mat-icon>
+
+        <input 
+            (keyup.enter)="onJobSearch()"
+            matInput type="text" 
+            [(ngModel)]="jobSearch"
+            placeholder="Title, companies, expertise or benefits"
+        >
+
+        <button (click)="onJobSearch()">Search</button>
+    </mat-form-field>
+</div>
+
+<div class="jobs-container">
+    <div>
+        <mat-checkbox color="primary">
+            <span class="filters">Full time</span>
+        </mat-checkbox>
+
+        <h4>Location</h4>
+
+        <mat-form-field class="location-search-form">
+            <mat-icon class="icon">public</mat-icon>
+            
+            <input 
+                (keyup.enter)="onLocationSearch()"
+                matInput type="text" 
+                [(ngModel)]="locationSearch"
+                placeholder="City, state, zip code or country"
+            >
+
+            <button *ngIf="locationSearch" matSuffix mat-icon-button aria-label="Clear" (click)="locationSearch=''">
+                <mat-icon>close</mat-icon>
+              </button>
+        </mat-form-field>
+
+        <mat-radio-group color="primary" class="cities">
+            <mat-radio-button *ngFor="let city of cities" [value]="city">
+                {{ city }}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <app-jobs-listing></app-jobs-listing>
+</div>
+
+
