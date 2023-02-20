@@ -1,24 +1,27 @@
-<div class="card">
+<div class="card-wrapper">
+  <a [routerLink]="['/jobs', job.job_id]" class="card">
     <div class="company-vacancy-details">
-        <div class="company-logo">
-            <img src="../../../assets/backgroundImg.png" />
-        </div>
+      <div class="company-logo">
+        <img *ngIf="job.thumbnail" [src]="job.thumbnail" />
+        <img *ngIf="!job.thumbnail" src="../../../assets/placeholder-img.png" />
+      </div>
 
-        <div class="titles">
-            <h5>Kasisto</h5>
-            <h4>Front-End Software Engineer</h4>
-            <div class="full-time">Full time</div>
-        </div>
+      <div class="titles">
+        <h5>{{ job.company_name }}</h5>
+        <h4>{{ job.title }}</h4>
+        <div class="full-time">{{ job.detected_extensions.schedule_type }}</div>
+      </div>
     </div>
 
     <div class="info">
-        <div class="location">
-            <mat-icon class="icon">public</mat-icon>
-            <span>new york</span>
-        </div>
-        <div class="time">
-            <mat-icon class="icon">query_builder</mat-icon>
-            <span>5 days ago</span>
-        </div>
+      <div class="location">
+        <mat-icon class="icon">public</mat-icon>
+        <span>{{ job.location }}</span>
+      </div>
+      <div class="time">
+        <mat-icon class="icon">query_builder</mat-icon>
+        <span>{{ job.detected_extensions.posted_at }}</span>
+      </div>
     </div>
+  </a>
 </div>

@@ -1,3 +1,11 @@
+.card-wrapper {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-wrapper:hover {
+  transform: scale(1.03);
+}
+
 .card {
   cursor: pointer;
   font-family: 'Roboto';
@@ -55,6 +63,7 @@
           width: 100%;
           height: 100%;
           border-radius: 4px;
+          object-fit: scale-down;
         }
       }
   }
