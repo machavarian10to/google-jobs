@@ -18,7 +18,7 @@
         <mat-icon class="icon">public</mat-icon>
         <span>{{ job.location }}</span>
       </div>
-      <div class="time">
+      <div class="time" *ngIf="job.detected_extensions.posted_at">
         <mat-icon class="icon">query_builder</mat-icon>
         <span>{{ job.detected_extensions.posted_at }}</span>
       </div>

@@ -1,1 +1,46 @@
-<p>job-description works!</p>
+<div class="job-desc-container">
+  <div class="sidebar">
+    <div class="back-to-search">
+      <mat-icon class="back-icon">trending_flat</mat-icon>
+      <a class="back-link" routerLink="/">Back to search</a>
+    </div>
+    <h4>How to Apply</h4>
+    <div class="job-apply">
+      <div>
+        <a [href]="job?.related_links[0]?.link" target="_blank">
+          {{ job?.related_links[0]?.text }}
+        </a>
+      </div>
+      <div class="job-related-link">
+        <a [href]="job?.related_links[1]?.link" target="_blank">
+          {{ job?.related_links[1]?.text }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="job-desc">
+    <div class="title">
+      <h4>{{ job?.title }}</h4>
+      <div class="full-time">{{ job?.detected_extensions?.schedule_type }}</div>
+    </div>
+    <div class="time" *ngIf="job?.detected_extensions?.posted_at">
+      <mat-icon class="icon">query_builder</mat-icon>
+      <span>{{ job?.detected_extensions?.posted_at }}</span>
+    </div>
+
+    <div class="company">
+      <img *ngIf="job?.thumbnail" [src]="job?.thumbnail" />
+      <img *ngIf="!job?.thumbnail" src="../../../assets/placeholder-img.png" />
+
+      <div class="details">
+        <h3>{{ job?.company_name }}</h3>
+        <div class="location">
+          <mat-icon class="icon">public</mat-icon>
+          <span>{{ job?.location }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="desc">{{ job?.description }}</div>
+  </div>
+</div>
