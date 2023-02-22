@@ -10,6 +10,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -35,6 +38,8 @@ import { JobCardComponent } from './components/job-card/job-card.component';
     MatIconModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
     HttpClientModule,
     FormsModule
   ],

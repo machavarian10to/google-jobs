@@ -53,6 +53,7 @@
 
 .jobs-container {
   display: flex;
+  justify-content: center;
   margin-top: 40px;
   font-family: 'Poppins', sans-serif;
 
@@ -79,6 +80,7 @@
     margin: 15px 0;
   }
 }
+
 
 .filters {
   color: #334680;

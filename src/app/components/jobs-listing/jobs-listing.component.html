@@ -1,3 +1,11 @@
-<div class="listing">
-    <app-job-card *ngFor="let job of jobs" [job]="job"></app-job-card>
+<div class="listing" #scrollToTop>
+    <mat-progress-spinner *ngIf="loading" class="spinner" mode="indeterminate"></mat-progress-spinner>
+    <app-job-card *ngFor="let job of jobs" [job]="job" [page]="page"></app-job-card>
+    <mat-paginator 
+        showFirstLastButtons
+        class="paginator" 
+        [length]="100"
+        [pageSize]="10"
+        (page)="onPageChanged($event)">
+    </mat-paginator>
 </div>

@@ -1,5 +1,5 @@
 <div class="card-wrapper">
-  <a [routerLink]="['/jobs', job.job_id]" class="card">
+  <a [routerLink]="['/jobs', job.job_id]" [queryParams]="{ page: page }" class="card">
     <div class="company-vacancy-details">
       <div class="company-logo">
         <img *ngIf="job.thumbnail" [src]="job.thumbnail" />

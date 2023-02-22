@@ -14,12 +14,12 @@ export class JobService {
 
   constructor(private http: HttpClient) { }
 
-  getJobs(): Observable<any>{
-    return this.http.get(`${this.apiUrl}&q=developer&start=0&gl=us`)
+  getJobs(page: number): Observable<any>{
+    return this.http.get(`${this.apiUrl}&q=developer&start=${page}&gl=us`)
   }
 
-  getJobById(id: any): Observable<any> {
-    return this.getJobs().pipe(
+  getJobById(id: any, page: any): Observable<any> {
+    return this.getJobs(page).pipe(
       map((job: { jobs_results: any[]; }) => job.jobs_results.find((j: { job_id: any; }) => j.job_id === id))
     );
   }

@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class JobCardComponent {
   @Input() job: any;
+  @Input() page!: number;
 }
