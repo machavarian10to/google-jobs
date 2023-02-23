@@ -1,6 +1,15 @@
 <div class="listing" #scrollToTop>
     <mat-progress-spinner *ngIf="loading" class="spinner" mode="indeterminate"></mat-progress-spinner>
-    <app-job-card *ngFor="let job of jobs" [job]="job" [page]="page"></app-job-card>
+
+    <app-job-card 
+        *ngFor="let job of jobs" 
+        [job]="job" 
+        [page]="page" 
+        [query]="jobSearch" 
+        [location]="locationSearch"
+    >
+    </app-job-card>
+
     <mat-paginator 
         showFirstLastButtons
         class="paginator" 

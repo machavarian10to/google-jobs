@@ -1,4 +1,4 @@
-import { Component, ViewChild,ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { JobService } from 'src/app/services/job.service';
 
 @Component({
@@ -10,19 +10,26 @@ export class JobsListingComponent {
   jobs: any[] = [];
   page: number = 0;
   loading: boolean = false;
+  defaultSearch: string = 'developer'
+  defaultRemote: number = 0;
+  defaultLocation: string = 'tbilisi'
+
+  @Input() remoteEnabled: any;
+  @Input() jobSearch!: string;
+  @Input() locationSearch!: string;
 
   @ViewChild('scrollToTop') scrollToTop!: ElementRef;
 
   constructor(private jobService: JobService) { }
 
   ngOnInit(): void {
-    this.fetchJobs(this.page);
+    this.remoteEnabled = this.remoteEnabled ? 1 : 0;
+    this.fetchJobs(this.defaultSearch, this.page, this.defaultLocation, this.defaultRemote);
   }
 
-
-  fetchJobs(page: number) {
+  fetchJobs(query: string, page: number, location:string, remote: number) {
     this.loading = true;
-    this.jobService.getJobs(page).subscribe(
+    this.jobService.getJobs(query, page, location, remote).subscribe(
       (data) => {
         this.jobs = data.jobs_results;
         this.loading = false;
@@ -34,16 +41,28 @@ export class JobsListingComponent {
       }
     );
   }
-  
+
+  onJobSearch(query: string){
+    if(!this.locationSearch) {
+      this.locationSearch = this.defaultLocation;
+    }
+    this.fetchJobs(query, this.page, this.locationSearch, this.remoteEnabled);
+  }
+
+  onLocationSearch(location: string){
+    if(!this.jobSearch) {
+      this.jobSearch = this.defaultSearch;
+    }
+    this.fetchJobs(this.jobSearch, this.page, location, this.remoteEnabled);
+  }
 
   onPageChanged(e: any){
     this.page = e.pageIndex * 10;
-    this.fetchJobs(this.page);
+    this.fetchJobs(this.jobSearch, this.page, this.locationSearch, this.remoteEnabled);
     this.scrollToTopOfPage();
   }
 
   scrollToTopOfPage() {
     this.scrollToTop.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
-
 }

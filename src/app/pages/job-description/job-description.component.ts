@@ -11,6 +11,10 @@ import { filter } from 'rxjs/operators';
 })
 export class JobDescriptionComponent implements OnInit {
   id: any;
+  query!: string;
+  location!: string;
+  defaultSearch: string = 'developer';
+  defaultLocation: string = 'tbilisi';
   page!: number;
   job: any;
   description: any;
@@ -27,14 +31,30 @@ export class JobDescriptionComponent implements OnInit {
 
   getJob(): void{
     this.loading = true; 
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.route.queryParams.subscribe(params => {
-      this.page = params['page'];
-    });
-    this.jobService.getJobById(this.id, this.page).subscribe(data => {
+    this.getParams();
+    this.jobService.getJobById(this.id, this.query, this.page, this.location).subscribe(data => {
       this.description = data.description.replace(/\n/g, '<br>');
       this.job = data;
       this.loading = false;
+    });
+  }
+
+  getParams(): void{
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.route.queryParams.subscribe(params => {
+      this.page = params['page'];
+
+      if(!params['query']){
+        this.query = this.defaultSearch;
+      }else {
+        this.query = params['query'];
+      }
+
+      if(!params['location']){
+        this.location  = this.defaultLocation;
+      }else {
+        this.location = params['location'];
+      }
     });
   }
 

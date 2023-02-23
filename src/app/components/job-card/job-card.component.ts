@@ -8,4 +8,6 @@ import { Component, Input } from '@angular/core';
 export class JobCardComponent {
   @Input() job: any;
   @Input() page!: number;
+  @Input() query!: string;
+  @Input() location!: string;
 }

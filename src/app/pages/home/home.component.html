@@ -15,8 +15,8 @@
 
 <div class="jobs-container">
     <div>
-        <mat-checkbox color="primary">
-            <span class="filters">Full time</span>
+        <mat-checkbox color="primary" [(ngModel)]="remoteEnabled">
+            <span class="filters">Remote</span>
         </mat-checkbox>
 
         <h4>Location</h4>
@@ -43,7 +43,7 @@
         </mat-radio-group>
     </div>
 
-    <app-jobs-listing></app-jobs-listing>
+    <app-jobs-listing [jobSearch]="jobSearch" [locationSearch]="locationSearch" [remoteEnabled]="remoteEnabled"></app-jobs-listing>
 </div>
 
 

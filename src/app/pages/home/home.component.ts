@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { JobsListingComponent } from 'src/app/components/jobs-listing/jobs-listing.component';
 
 @Component({
   selector: 'app-home',
@@ -6,19 +7,33 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  jobSearch: string = ""
-  locationSearch: string = ""
+  @ViewChild(JobsListingComponent) jobsListingComponent!: JobsListingComponent;
 
-  cities: string[] = ['London', 'Amsterdam', 'New York', 'Berlin'];
+  jobSearch!: string;
+  locationSearch!: string;
+  remoteEnabled: boolean = false;
 
+  cities: string[] = ['London', 'Amsterdam', 'New York', 'Berlin', 'Madrid'];
 
-  onJobSearch(): void { 
-    console.log(this.jobSearch);
+  onJobSearch(): void {
+    if(!this.jobSearch && !this.locationSearch) return alert('Search word must not be empty!')
+    if (this.jobSearch.indexOf(' ') !== -1) {
+      this.jobSearch = this.jobSearch.replace(/ /g, '+');
+    }
+    this.jobsListingComponent.onJobSearch(this.jobSearch);
     this.jobSearch = "";
+    this.locationSearch = "";
+    // TODO
+    // this.jobSearch = this.jobSearch.replace(/\+/g, ' ');
   };
 
   onLocationSearch(): void { 
-    console.log(this.locationSearch);
+    if(!this.jobSearch && !this.locationSearch) return alert('Search word must not be empty!')
+    if (this.locationSearch.indexOf(' ') !== -1) {
+      this.locationSearch = this.locationSearch.replace(/ /g, '+');
+    }
+    this.jobsListingComponent.onLocationSearch(this.locationSearch);
+    this.jobSearch = "";
     this.locationSearch = "";
   };
 }
