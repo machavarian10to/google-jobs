@@ -15,7 +15,7 @@
 
 <div class="jobs-container">
     <div>
-        <mat-checkbox color="primary" [(ngModel)]="remoteEnabled">
+        <mat-checkbox color="primary">
             <span class="filters">Remote</span>
         </mat-checkbox>
 
@@ -31,19 +31,24 @@
                 placeholder="City, state, zip code or country"
             >
 
-            <button *ngIf="locationSearch" matSuffix mat-icon-button aria-label="Clear" (click)="locationSearch=''">
+            <button *ngIf="locationSearch" matSuffix mat-icon-button (click)="locationSearch=''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
 
-        <mat-radio-group color="primary" class="cities">
-            <mat-radio-button class="city" *ngFor="let city of cities" [value]="city">
+        <mat-radio-group color="primary" class="cities" [(ngModel)]="selectedCity">
+            <mat-radio-button (click)="onCityChange(city)" class="city" *ngFor="let city of cities" [value]="city">
                 {{ city }}
             </mat-radio-button>
         </mat-radio-group>
     </div>
 
-    <app-jobs-listing [jobSearch]="jobSearch" [locationSearch]="locationSearch" [remoteEnabled]="remoteEnabled"></app-jobs-listing>
+    <app-jobs-listing 
+        [jobSearch]="jobSearch" 
+        [locationSearch]="locationSearch"
+        [selectedCity]="selectedCity"
+    >
+    </app-jobs-listing>
 </div>
 
 
