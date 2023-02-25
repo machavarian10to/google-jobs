@@ -24,28 +24,33 @@ export class JobsListingComponent implements OnInit, OnChanges {
   @Input() jobSearch!: string;
   @Input() locationSearch!: string;
   @Input() selectedCity!: string;
+  @Input() remoteEnabled: any;
 
   @ViewChild('scrollToTop') scrollToTop!: ElementRef;
 
   constructor(private jobService: JobService) {}
 
   ngOnInit(): void {
-    this.fetchJobs(this.defaultSearch, this.page, this.defaultLocation);
+    this.fetchJobs(this.defaultSearch, this.page, this.defaultLocation, this.remoteEnabled);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['selectedCity']) {
-      if (!this.jobSearch) {
-        this.jobSearch = this.defaultSearch;
-      }
+      if (!this.jobSearch) this.jobSearch = this.defaultSearch;
       this.locationSearch = this.selectedCity;
-      this.fetchJobs(this.jobSearch, this.page, this.locationSearch);
+      this.fetchJobs(this.jobSearch, this.page, this.locationSearch, this.remoteEnabled);
+    }
+
+    if (changes['remoteEnabled']) {
+      if (!this.locationSearch) this.locationSearch = this.defaultLocation;
+      this.remoteEnabled = this.remoteEnabled ? 1 : 0;
+      this.fetchJobs(this.jobSearch, this.page, this.locationSearch, this.remoteEnabled);
     }
   }
 
-  fetchJobs(query: string, page: number, location: string) {
+  fetchJobs(query: string, page: number, location: string, remote: any) {
     this.loading = true;
-    this.jobService.getJobs(query, page, location).subscribe({
+    this.jobService.getJobs(query, page, location, remote).subscribe({
       next: (data) => {
         this.jobs = data.jobs_results;
         this.loading = false;
@@ -56,29 +61,21 @@ export class JobsListingComponent implements OnInit, OnChanges {
   }
 
   onJobSearch(query: string) {
-    if (!this.locationSearch) {
-      this.locationSearch = this.defaultLocation;
-    }
-    this.fetchJobs(query, this.page, this.locationSearch);
+    if (!this.locationSearch) this.locationSearch = this.defaultLocation;
+    this.fetchJobs(query, this.page, this.locationSearch, this.remoteEnabled);
   }
 
   onLocationSearch(location: string) {
-    if (!this.jobSearch) {
-      this.jobSearch = this.defaultSearch;
-    }
+    if (!this.jobSearch) this.jobSearch = this.defaultSearch;
     this.locationSearch = location;
-    this.fetchJobs(this.jobSearch, this.page, location);
+    return this.fetchJobs(this.jobSearch, this.page, location, this.remoteEnabled);
   }
 
   onPageChanged(e: any) {
     this.page = e.pageIndex * 10;
-    if (!this.jobSearch) {
-      this.jobSearch = this.defaultSearch;
-    }
-    if (!this.locationSearch) {
-      this.locationSearch = this.defaultLocation;
-    }
-    this.fetchJobs(this.jobSearch, this.page, this.locationSearch);
+    if (!this.jobSearch) this.jobSearch = this.defaultSearch;
+    if (!this.locationSearch) this.locationSearch = this.defaultLocation;
+    this.fetchJobs(this.jobSearch, this.page, this.locationSearch, this.remoteEnabled);
     this.scrollToTopOfPage();
   }
 

@@ -15,7 +15,7 @@
 
 <div class="jobs-container">
     <div>
-        <mat-checkbox color="primary">
+        <mat-checkbox color="primary" [(ngModel)]="remoteEnabled" (change)="onRemoteChange($event)">
             <span class="filters">Remote</span>
         </mat-checkbox>
 
@@ -47,6 +47,7 @@
         [jobSearch]="jobSearch" 
         [locationSearch]="locationSearch"
         [selectedCity]="selectedCity"
+        [remoteEnabled]="remoteEnabled"
     >
     </app-jobs-listing>
 </div>

@@ -10,12 +10,14 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./job-description.component.scss'],
 })
 export class JobDescriptionComponent implements OnInit {
+  defaultSearch: string = 'developer';
+  defaultLocation: string = 'tbilisi';
+  
   id: any;
   query!: string;
   location!: string;
-  defaultSearch: string = 'developer';
-  defaultLocation: string = 'tbilisi';
   page!: number;
+  remoteEnabled!: any;
   job: any;
   description: any;
   loading: boolean = false;
@@ -32,7 +34,7 @@ export class JobDescriptionComponent implements OnInit {
   getJob(): void{
     this.loading = true; 
     this.getParams();
-    this.jobService.getJobById(this.id, this.query, this.page, this.location).subscribe(data => {
+    this.jobService.getJobById(this.id, this.query, this.page, this.location, this.remoteEnabled).subscribe(data => {
       this.description = data.description.replace(/\n/g, '<br>');
       this.job = data;
       this.loading = false;
@@ -43,6 +45,7 @@ export class JobDescriptionComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.route.queryParams.subscribe(params => {
       this.page = params['page'];
+      this.remoteEnabled = params['remoteEnabled'];
 
       if(!params['query']){
         this.query = this.defaultSearch;
