@@ -8,12 +8,14 @@
         [query]="jobSearch" 
         [location]="locationSearch"
         [remoteEnabled]="remoteEnabled"
+        [hidden]="loading"
     >
     </app-job-card>
 
     <mat-paginator 
         showFirstLastButtons
         class="paginator" 
+        [hidden]="loading"
         [length]="100"
         [pageSize]="10"
         (page)="onPageChanged($event)">

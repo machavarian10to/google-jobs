@@ -1,5 +1,5 @@
 .listing {
-    margin-left: 32px;
+    margin-left: 20px;
 
     .spinner {
       margin: 100px;
@@ -10,5 +10,15 @@
       font-weight: 600;
       margin: 40px 0;
       color: #B9BDCF;
+    }
+  }
+
+  @media (max-width: 576px) { 
+    .paginator {
+      max-width: 100%;
+    }
+
+    .listing {
+      margin: 0;
     }
   }

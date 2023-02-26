@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 780px;
+  max-width: 780px;
   height: 114px;
   color: #334680;
   background-color: #fff;
@@ -80,6 +80,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
 
       .icon {
         display: flex;
@@ -95,6 +96,51 @@
 
     span {
       margin-left: 8px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    .company-vacancy-details{
+      .titles {
+        h4 {
+          font-size: 10px;  
+        }
+      }
+
+    }
+  }
+
+  .info {
+    span {
+      font-size: 10px;
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .card {
+    .company-vacancy-details{
+      .titles {
+        h4 {
+          font-size: 11px;  
+        }
+      }
+
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .card {
+    .company-vacancy-details{
+      .titles {
+        h4 {
+          font-size: 13px;  
+        }
+      }
+
     }
   }
 }

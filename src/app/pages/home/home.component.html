@@ -14,27 +14,29 @@
 </div>
 
 <div class="jobs-container">
-    <div>
+    <div class="filter-container">
         <mat-checkbox color="primary" [(ngModel)]="remoteEnabled" (change)="onRemoteChange($event)">
             <span class="filters">Remote</span>
         </mat-checkbox>
 
         <h4>Location</h4>
 
-        <mat-form-field class="location-search-form">
-            <mat-icon class="icon">public</mat-icon>
-            
-            <input 
-                (keyup.enter)="onLocationSearch()"
-                matInput type="text" 
-                [(ngModel)]="locationSearch"
-                placeholder="City, state, zip code or country"
-            >
-
-            <button *ngIf="locationSearch" matSuffix mat-icon-button (click)="locationSearch=''">
-                <mat-icon>close</mat-icon>
-            </button>
-        </mat-form-field>
+        <div class="location-search-wrapper">
+            <mat-form-field class="location-search-form">
+                <mat-icon class="icon">public</mat-icon>
+                
+                <input 
+                    (keyup.enter)="onLocationSearch()"
+                    matInput type="text" 
+                    [(ngModel)]="locationSearch"
+                    placeholder="City, state, or country"
+                >
+    
+                <button *ngIf="locationSearch" matSuffix mat-icon-button (click)="locationSearch=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
 
         <mat-radio-group color="primary" class="cities" [(ngModel)]="selectedCity">
             <mat-radio-button (click)="onCityChange(city)" class="city" *ngFor="let city of cities" [value]="city">
