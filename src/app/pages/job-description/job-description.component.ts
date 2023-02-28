@@ -19,7 +19,6 @@ export class JobDescriptionComponent implements OnInit {
   page!: number;
   remoteEnabled!: any;
   job: any;
-  description: any;
   loading: boolean = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private jobService: JobService) {}
@@ -35,7 +34,6 @@ export class JobDescriptionComponent implements OnInit {
     this.loading = true; 
     this.getParams();
     this.jobService.getJobById(this.id, this.query, this.page, this.location, this.remoteEnabled).subscribe(data => {
-      this.description = data.description.replace(/\n/g, '<br>');
       this.job = data;
       this.loading = false;
     });

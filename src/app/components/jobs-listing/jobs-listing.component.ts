@@ -54,7 +54,6 @@ export class JobsListingComponent implements OnInit, OnChanges {
       next: (data) => {
         this.jobs = data.jobs_results;
         this.loading = false;
-        console.log(data);
       },
       error: (e) => (this.loading = false && console.error(e)),
     });

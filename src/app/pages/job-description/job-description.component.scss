@@ -43,7 +43,7 @@
 
   .job-desc {
     color: #334680;
-    margin-left: 70px;
+    margin-left: 10%;
 
     .title {
       display: flex;
@@ -97,7 +97,6 @@
         width: 42px;
         height: 42px;
         border-radius: 4px;
-        // object-fit: scale-down;
       }
 
       .details {
@@ -135,4 +134,42 @@
     margin: 32px 0 100px 0;
     max-width: 890px;
   }
+}
+
+
+/* For screens up to 576px */
+@media (max-width: 576px) {
+  .job-desc-container { 
+    flex-direction: column;
+
+    .job-desc {
+      margin: 0;
+
+      .title{
+        margin-top: 36px;
+      flex-wrap: wrap;
+
+
+        .full-time{
+          margin-left: 0;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+
+}
+
+/* For screens from 576px to 768px */
+@media (min-width: 576px) and (max-width: 768px) {
+}
+
+/* For screens from 768px to 992px */
+@media (min-width: 768px) and (max-width: 992px) {
+
+}
+
+/* For screens above 992px */
+@media (min-width: 992px) {
+
 }

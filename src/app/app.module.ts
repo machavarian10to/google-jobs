@@ -20,6 +20,7 @@ import { JobDescriptionComponent } from './pages/job-description/job-description
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { JobsListingComponent } from './components/jobs-listing/jobs-listing.component';
 import { JobCardComponent } from './components/job-card/job-card.component';
+import { NewlinePipe } from './newline.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { JobCardComponent } from './components/job-card/job-card.component';
     PageNotFoundComponent,
     JobsListingComponent,
     JobCardComponent,
+    NewlinePipe
   ],
   imports: [
     BrowserModule,
