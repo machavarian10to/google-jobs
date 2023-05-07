@@ -24,7 +24,7 @@ export class JobsListingComponent implements OnInit, OnChanges {
   @Input() jobSearch!: string;
   @Input() locationSearch!: string;
   @Input() selectedCity!: string;
-  @Input() remoteEnabled: any;
+  @Input() remoteEnabled!: number;
 
   @ViewChild('scrollToTop') scrollToTop!: ElementRef;
 

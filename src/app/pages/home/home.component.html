@@ -2,9 +2,9 @@
     <mat-form-field class="job-search-form">
         <mat-icon class="icon">work_outline</mat-icon>
 
-        <input 
+        <input
             (keyup.enter)="onJobSearch()"
-            matInput type="text" 
+            matInput type="text"
             [(ngModel)]="jobSearch"
             placeholder="Title, companies, or expertise"
         >
@@ -24,14 +24,14 @@
         <div class="location-search-wrapper">
             <mat-form-field class="location-search-form">
                 <mat-icon class="icon">public</mat-icon>
-                
-                <input 
+
+                <input
                     (keyup.enter)="onLocationSearch()"
-                    matInput type="text" 
+                    matInput type="text"
                     [(ngModel)]="locationSearch"
                     placeholder="City, state, or country"
                 >
-    
+
                 <button *ngIf="locationSearch" matSuffix mat-icon-button (click)="locationSearch=''">
                     <mat-icon>close</mat-icon>
                 </button>
@@ -45,8 +45,8 @@
         </mat-radio-group>
     </div>
 
-    <app-jobs-listing 
-        [jobSearch]="jobSearch" 
+    <app-jobs-listing
+        [jobSearch]="jobSearch"
         [locationSearch]="locationSearch"
         [selectedCity]="selectedCity"
         [remoteEnabled]="remoteEnabled"

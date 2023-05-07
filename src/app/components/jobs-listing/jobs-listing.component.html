@@ -1,23 +1,28 @@
 <div class="listing" #scrollToTop>
-    <mat-progress-spinner *ngIf="loading" class="spinner" mode="indeterminate"></mat-progress-spinner>
+    <div class="spinner" *ngIf="loading"></div>
 
-    <app-job-card 
-        *ngFor="let job of jobs" 
-        [job]="job" 
-        [page]="page" 
-        [query]="jobSearch" 
+    <h3 *ngIf="!loading && !jobs.length">
+      Activate CORS Header:
+      <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">cors-anywhere</a>
+    </h3>
+
+    <app-job-card
+        *ngFor="let job of jobs"
+        [job]="job"
+        [page]="page"
+        [query]="jobSearch"
         [location]="locationSearch"
         [remoteEnabled]="remoteEnabled"
         [hidden]="loading"
     >
     </app-job-card>
 
-    <mat-paginator 
+    <mat-paginator
         showFirstLastButtons
-        class="paginator" 
-        [hidden]="loading"
+        class="paginator"
         [length]="100"
         [pageSize]="10"
+        *ngIf="jobs.length"
         (page)="onPageChanged($event)">
     </mat-paginator>
 </div>

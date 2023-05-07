@@ -12,12 +12,12 @@ import { filter } from 'rxjs/operators';
 export class JobDescriptionComponent implements OnInit {
   defaultSearch: string = 'developer';
   defaultLocation: string = 'tbilisi';
-  
+
   id: any;
   query!: string;
   location!: string;
   page!: number;
-  remoteEnabled!: any;
+  remoteEnabled!: number;
   job: any;
   loading: boolean = false;
 
@@ -31,7 +31,7 @@ export class JobDescriptionComponent implements OnInit {
   }
 
   getJob(): void{
-    this.loading = true; 
+    this.loading = true;
     this.getParams();
     this.jobService.getJobById(this.id, this.query, this.page, this.location, this.remoteEnabled).subscribe(data => {
       this.job = data;

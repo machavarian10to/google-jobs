@@ -12,14 +12,14 @@ export class HomeComponent {
   jobSearch!: string;
   locationSearch!: string;
   selectedCity!: string;
-  remoteEnabled: any = false;
+  remoteEnabled: number = 0;
 
   cities: string[] = ['London', 'Rome', 'Amsterdam', 'Berlin', 'Madrid'];
 
   onRemoteChange(event: any){
     this.remoteEnabled = event.checked ? 1 : 0;
   }
-  
+
   onJobSearch(): void {
     if(!this.jobSearch && !this.locationSearch && !this.selectedCity) return alert('Search word must not be empty!')
     if(!this.jobSearch){
@@ -36,7 +36,7 @@ export class HomeComponent {
     this.selectedCity = city;
   }
 
-  onLocationSearch(): void { 
+  onLocationSearch(): void {
     if(!this.jobSearch && !this.locationSearch) return alert('Search word must not be empty!')
     if (this.locationSearch.indexOf(' ') !== -1) this.locationSearch = this.locationSearch.replace(/ /g, '+');
     this.jobsListingComponent.onLocationSearch(this.locationSearch);

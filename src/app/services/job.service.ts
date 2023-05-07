@@ -13,11 +13,11 @@ export class JobService {
 
   constructor(private http: HttpClient) { }
 
-  getJobs(query: string, page: number, location: string, remote: any): Observable<any>{
+  getJobs(query: string, page: number, location: string, remote: number): Observable<any>{
     return this.http.get(`${this.apiUrl}&q=${query}&start=${page}&location=${location}&ltype=${remote}`)
   }
 
-  getJobById(id: string, query: string, page: number, location: string, remote: any): Observable<any> {
+  getJobById(id: string, query: string, page: number, location: string, remote: number): Observable<any> {
     return this.getJobs(query, page, location, remote).pipe(
       map((job: { jobs_results: any[]; }) => job.jobs_results.find((j: { job_id: any; }) => j.job_id === id))
     );

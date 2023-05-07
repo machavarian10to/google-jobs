@@ -10,5 +10,5 @@ export class JobCardComponent {
   @Input() page!: number;
   @Input() query!: string;
   @Input() location!: string;
-  @Input() remoteEnabled!: any;
+  @Input() remoteEnabled!: number;
 }

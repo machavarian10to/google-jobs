@@ -20,8 +20,8 @@
   </div>
 
   <div class="job-desc">
-    <mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
-    
+    <div *ngIf="loading" class="spinner"></div>
+
     <div class="title">
       <h4>{{ job?.title }}</h4>
       <div class="full-time">{{ job?.detected_extensions?.schedule_type }}</div>
