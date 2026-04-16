@@ -1,10 +1,10 @@
 {
-  "/api": {
+  "/api/search": {
     "target": "https://serpapi.com",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {
-      "^/api": ""
+      "^/api/search": "/search.json"
     }
   }
 }

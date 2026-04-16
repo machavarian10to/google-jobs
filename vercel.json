@@ -1,8 +1,7 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/google-jobs",
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://serpapi.com/$1"
-    }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
