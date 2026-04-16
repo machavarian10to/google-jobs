@@ -23,6 +23,31 @@
       }
     }
 
+    .error-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 60px auto;
+      max-width: 480px;
+      padding: 20px 24px;
+      background: #fff3f3;
+      border: 1px solid #f5c6c6;
+      border-radius: 12px;
+
+      .material-icons {
+        font-size: 28px;
+        color: #d93025;
+        flex-shrink: 0;
+      }
+
+      p {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 500;
+        color: #b71c1c;
+      }
+    }
+
     .paginator {
       font-size: 14px;
       font-weight: 600;

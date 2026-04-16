@@ -27,6 +27,7 @@
 
                 <input
                     (keyup.enter)="onLocationSearch()"
+                    (input)="onLocationInput()"
                     matInput type="text"
                     [(ngModel)]="locationSearch"
                     placeholder="City, state, or country"

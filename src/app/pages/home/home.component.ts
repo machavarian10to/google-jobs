@@ -21,12 +21,8 @@ export class HomeComponent {
   }
 
   onJobSearch(): void {
-    if(!this.jobSearch && !this.locationSearch && !this.selectedCity) return alert('Search word must not be empty!')
-    if(!this.jobSearch){
-      return alert('Search word must not be empty!')
-    }else {
-      if (this.jobSearch.indexOf(' ') !== -1) this.jobSearch = this.jobSearch.replace(/ /g, '+');
-    }
+    if (!this.jobSearch) return;
+    if (this.jobSearch.indexOf(' ') !== -1) this.jobSearch = this.jobSearch.replace(/ /g, '+');
     this.jobsListingComponent.onJobSearch(this.jobSearch);
     this.jobSearch = this.jobSearch.replace(/\+/g, ' ');
   };
@@ -36,8 +32,12 @@ export class HomeComponent {
     this.selectedCity = city;
   }
 
+  onLocationInput(): void {
+    if (this.locationSearch) this.selectedCity = '';
+  }
+
   onLocationSearch(): void {
-    if(!this.jobSearch && !this.locationSearch) return alert('Search word must not be empty!')
+    if (!this.locationSearch) return;
     if (this.locationSearch.indexOf(' ') !== -1) this.locationSearch = this.locationSearch.replace(/ /g, '+');
     this.jobsListingComponent.onLocationSearch(this.locationSearch);
     this.locationSearch = this.locationSearch.replace(/\+/g, ' ');

@@ -18,8 +18,9 @@ export class JobsListingComponent implements OnInit, OnChanges {
   jobs: any[] = [];
   page: number = 0;
   loading: boolean = false;
+  errorMessage: string = '';
   defaultSearch: string = 'developer';
-  defaultLocation: string = 'tbilisi';
+  defaultLocation: string = 'Georgia';
 
   @Input() jobSearch!: string;
   @Input() locationSearch!: string;
@@ -35,27 +36,32 @@ export class JobsListingComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['selectedCity']) {
+    if (changes['selectedCity'] && !changes['selectedCity'].isFirstChange()) {
       if (!this.jobSearch) this.jobSearch = this.defaultSearch;
       this.locationSearch = this.selectedCity;
       this.fetchJobs(this.jobSearch, this.page, this.locationSearch, this.remoteEnabled);
     }
 
-    if (changes['remoteEnabled']) {
+    if (changes['remoteEnabled'] && !changes['remoteEnabled'].isFirstChange()) {
       if (!this.locationSearch) this.locationSearch = this.defaultLocation;
       this.remoteEnabled = this.remoteEnabled ? 1 : 0;
-      this.fetchJobs(this.jobSearch, this.page, this.locationSearch, this.remoteEnabled);
+      this.fetchJobs(this.jobSearch || this.defaultSearch, this.page, this.locationSearch, this.remoteEnabled);
     }
   }
 
   fetchJobs(query: string, page: number, location: string, remote: any) {
     this.loading = true;
+    this.errorMessage = '';
     this.jobService.getJobs(query, page, location, remote).subscribe({
       next: (data) => {
-        this.jobs = data.jobs_results;
+        this.jobs = data.jobs_results || [];
+        this.errorMessage = data.error || '';
         this.loading = false;
       },
-      error: (e) => (this.loading = false && console.error(e)),
+      error: (e) => {
+        this.loading = false;
+        this.errorMessage = e?.error?.error || e?.message || 'Something went wrong. Please try again.';
+      },
     });
   }
 

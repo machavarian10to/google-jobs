@@ -1,10 +1,11 @@
 <div class="listing" #scrollToTop>
     <div class="spinner" *ngIf="loading"></div>
 
-    <h3 *ngIf="!loading && !jobs.length">
-      Activate CORS Header:
-      <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank">cors-anywhere</a>
-    </h3>
+    <div class="error-box" *ngIf="errorMessage && !loading">
+      <span class="material-icons">error_outline</span>
+      <p>{{ errorMessage }}</p>
+    </div>
+
 
     <app-job-card
         *ngFor="let job of jobs"
