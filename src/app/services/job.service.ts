@@ -19,7 +19,7 @@ export class JobService {
 
   getJobById(id: string, query: string, page: number, location: string, remote: number): Observable<any> {
     return this.getJobs(query, page, location, remote).pipe(
-      map((job: { jobs_results: any[]; }) => job.jobs_results.find((j: { job_id: any; }) => j.job_id === id))
+      map((job: { jobs_results: any[]; }) => (job.jobs_results || []).find((j: { job_id: any; }) => j.job_id === id))
     );
   }
 }

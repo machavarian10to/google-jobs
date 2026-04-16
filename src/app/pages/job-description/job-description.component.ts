@@ -11,7 +11,7 @@ import { filter } from 'rxjs/operators';
 })
 export class JobDescriptionComponent implements OnInit {
   defaultSearch: string = 'developer';
-  defaultLocation: string = 'tbilisi';
+  defaultLocation: string = 'Georgia';
 
   id: any;
   query!: string;

@@ -7,13 +7,13 @@
     <h4>How to Apply</h4>
     <div class="job-apply">
       <div>
-        <a [href]="job?.related_links[0]?.link" target="_blank">
-          {{ job?.related_links[0]?.text }}
+        <a [href]="job?.related_links?.[0]?.link" target="_blank">
+          {{ job?.related_links?.[0]?.text }}
         </a>
       </div>
       <div class="job-related-link">
-        <a [href]="job?.related_links[1]?.link" target="_blank">
-          {{ job?.related_links[1]?.text }}
+        <a [href]="job?.related_links?.[1]?.link" target="_blank">
+          {{ job?.related_links?.[1]?.text }}
         </a>
       </div>
     </div>
